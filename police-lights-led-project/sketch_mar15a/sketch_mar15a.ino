@@ -4,8 +4,16 @@
  * Date: 15/03/2019
  * Purpose: Create variation of blinking lights of a police car
  */
+//implementing variables
+ int firstKeyPin = 2;
+int secondKeyPin = 3;
+
+
 void setup() {
-  
+  //set the button pins as inputs
+  pinMode(firstKeyPin, INPUT_PULLUP);
+  pinMode(secondKeyPin, INPUT_PULLUP);
+  //set up the lights
   pinMode(13, OUTPUT);      // Set pin 13 to output
  pinMode(12, OUTPUT);      // Set pin 12 to output
   pinMode(11, OUTPUT);      // Set pin 11to output
@@ -20,12 +28,20 @@ void setup() {
 
 
 void loop() {
-  
+  //first pattern of flashing 
   firstLoop();
-  secondLoop();
-  thirdLoop();
+  // where I press the red button, it loops the second pattern flashing
+  if(digitalRead(firstKeyPin) == LOW){        //if the first key is pressed
+    secondLoop(); //run the second loop
+  }
+  //pressing the green button, it loops the second pattern flashing
+  if(digitalRead(secondKeyPin) == LOW){  //if the second key is pressed
+    thirdLoop(); //run the third loop
+  }
+  
+  
 }
-
+//the first pattern method
 void firstLoop()
 {
   for(int i = 0; i < 10; i++)
@@ -59,6 +75,7 @@ void firstLoop()
                      delay (100); //delay
   }
 }
+//this is the second pattern method
 void secondLoop()
 {
   for(int i = 0; i <10; i++)
@@ -88,6 +105,7 @@ void secondLoop()
                     
   }
 }
+//this is the third pattern method
 void thirdLoop()
 {
   for(int i = 0; i< 5; i++)
